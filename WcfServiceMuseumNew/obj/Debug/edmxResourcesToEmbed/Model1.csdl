@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MuseumModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MuseumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="MuseumModel.sysdiagram" />
+    <EntitySet Name="tblBuyers" EntityType="MuseumModel.tblBuyer" />
+    <EntitySet Name="tblExhibits" EntityType="MuseumModel.tblExhibit" />
+    <EntitySet Name="tblLocations" EntityType="MuseumModel.tblLocation" />
+    <EntitySet Name="tblMuseums" EntityType="MuseumModel.tblMuseum" />
+    <EntitySet Name="tblOrderForms" EntityType="MuseumModel.tblOrderForm" />
+    <EntitySet Name="tblUsers" EntityType="MuseumModel.tblUser" />
+    <EntitySet Name="MuseumViews" EntityType="MuseumModel.MuseumView" />
+    <AssociationSet Name="FK_tblOrderForms_tblBuyers" Association="MuseumModel.FK_tblOrderForms_tblBuyers">
+      <End Role="tblBuyers" EntitySet="tblBuyers" />
+      <End Role="tblOrderForms" EntitySet="tblOrderForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblExhibits_tblLocations" Association="MuseumModel.FK_tblExhibits_tblLocations">
+      <End Role="tblLocations" EntitySet="tblLocations" />
+      <End Role="tblExhibits" EntitySet="tblExhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblExhibits_tblOrderForms" Association="MuseumModel.FK_tblExhibits_tblOrderForms">
+      <End Role="tblOrderForms" EntitySet="tblOrderForms" />
+      <End Role="tblExhibits" EntitySet="tblExhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLocations_tblMuseum" Association="MuseumModel.FK_tblLocations_tblMuseum">
+      <End Role="tblMuseum" EntitySet="tblMuseums" />
+      <End Role="tblLocations" EntitySet="tblLocations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblBuyer">
+    <Key>
+      <PropertyRef Name="BuyerId" />
+    </Key>
+    <Property Name="BuyerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuyersName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersSurname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersAddress" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersCountry" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblOrderForms" Relationship="MuseumModel.FK_tblOrderForms_tblBuyers" FromRole="tblBuyers" ToRole="tblOrderForms" />
+  </EntityType>
+  <EntityType Name="tblExhibit">
+    <Key>
+      <PropertyRef Name="ExhibitId" />
+    </Key>
+    <Property Name="ExhibitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Dimensions" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="HistoricPeriod" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="LocationIdFK" Type="Int32" Nullable="false" />
+    <Property Name="OrderFormIdFK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblLocation" Relationship="MuseumModel.FK_tblExhibits_tblLocations" FromRole="tblExhibits" ToRole="tblLocations" />
+    <NavigationProperty Name="tblOrderForm" Relationship="MuseumModel.FK_tblExhibits_tblOrderForms" FromRole="tblExhibits" ToRole="tblOrderForms" />
+  </EntityType>
+  <EntityType Name="tblLocation">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Surface_m2_" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="LeasePrice" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MuseumIdFK" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblExhibits" Relationship="MuseumModel.FK_tblExhibits_tblLocations" FromRole="tblLocations" ToRole="tblExhibits" />
+    <NavigationProperty Name="tblMuseum" Relationship="MuseumModel.FK_tblLocations_tblMuseum" FromRole="tblLocations" ToRole="tblMuseum" />
+  </EntityType>
+  <EntityType Name="tblMuseum">
+    <Key>
+      <PropertyRef Name="MuseumId" />
+    </Key>
+    <Property Name="MuseumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MuseumName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MuseumAddress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Established" Type="DateTime" />
+    <NavigationProperty Name="tblLocations" Relationship="MuseumModel.FK_tblLocations_tblMuseum" FromRole="tblMuseum" ToRole="tblLocations" />
+  </EntityType>
+  <EntityType Name="tblOrderForm">
+    <Key>
+      <PropertyRef Name="OrderFormId" />
+    </Key>
+    <Property Name="OrderFormId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="BuyerAdress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="BuyerIdFk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblBuyer" Relationship="MuseumModel.FK_tblOrderForms_tblBuyers" FromRole="tblOrderForms" ToRole="tblBuyers" />
+    <NavigationProperty Name="tblExhibits" Relationship="MuseumModel.FK_tblExhibits_tblOrderForms" FromRole="tblOrderForms" ToRole="tblExhibits" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="IsAdministrator" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MuseumView">
+    <Key>
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="ExhibitId" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="LocationIdFK" />
+      <PropertyRef Name="OrderFormIdFK" />
+      <PropertyRef Name="BuyerId" />
+      <PropertyRef Name="BuyersName" />
+      <PropertyRef Name="BuyersSurname" />
+      <PropertyRef Name="BuyersAddress" />
+      <PropertyRef Name="MuseumId" />
+      <PropertyRef Name="MuseumName" />
+      <PropertyRef Name="OrderFormId" />
+      <PropertyRef Name="BuyerIdFk" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="IsAdministrator" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+    <Property Name="LocationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Surface_m2_" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="LeasePrice" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MuseumIdFK" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="ExhibitId" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Dimensions" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="HistoricPeriod" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="LocationIdFK" Type="Int32" Nullable="false" />
+    <Property Name="OrderFormIdFK" Type="Int32" Nullable="false" />
+    <Property Name="BuyerId" Type="Int32" Nullable="false" />
+    <Property Name="BuyersName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersSurname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersAddress" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="BuyersCountry" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MuseumId" Type="Int32" Nullable="false" />
+    <Property Name="MuseumName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MuseumAddress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Established" Type="DateTime" />
+    <Property Name="OrderFormId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="BuyerAdress" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="BuyerIdFk" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="IsAdministrator" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblOrderForms_tblBuyers">
+    <End Role="tblBuyers" Type="MuseumModel.tblBuyer" Multiplicity="1" />
+    <End Role="tblOrderForms" Type="MuseumModel.tblOrderForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBuyers">
+        <PropertyRef Name="BuyerId" />
+      </Principal>
+      <Dependent Role="tblOrderForms">
+        <PropertyRef Name="BuyerIdFk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblExhibits_tblLocations">
+    <End Role="tblLocations" Type="MuseumModel.tblLocation" Multiplicity="1" />
+    <End Role="tblExhibits" Type="MuseumModel.tblExhibit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLocations">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="tblExhibits">
+        <PropertyRef Name="LocationIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblExhibits_tblOrderForms">
+    <End Role="tblOrderForms" Type="MuseumModel.tblOrderForm" Multiplicity="1" />
+    <End Role="tblExhibits" Type="MuseumModel.tblExhibit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrderForms">
+        <PropertyRef Name="OrderFormId" />
+      </Principal>
+      <Dependent Role="tblExhibits">
+        <PropertyRef Name="OrderFormIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLocations_tblMuseum">
+    <End Role="tblMuseum" Type="MuseumModel.tblMuseum" Multiplicity="0..1" />
+    <End Role="tblLocations" Type="MuseumModel.tblLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMuseum">
+        <PropertyRef Name="MuseumId" />
+      </Principal>
+      <Dependent Role="tblLocations">
+        <PropertyRef Name="MuseumIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

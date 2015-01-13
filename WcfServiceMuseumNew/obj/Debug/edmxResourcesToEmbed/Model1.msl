@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MuseumModelStoreContainer" CdmEntityContainer="MuseumEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MuseumModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBuyers">
+      <EntityTypeMapping TypeName="MuseumModel.tblBuyer">
+        <MappingFragment StoreEntitySet="tblBuyers">
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="BuyersName" ColumnName="BuyersName" />
+          <ScalarProperty Name="BuyersSurname" ColumnName="BuyersSurname" />
+          <ScalarProperty Name="BuyersAddress" ColumnName="BuyersAddress" />
+          <ScalarProperty Name="BuyersCountry" ColumnName="BuyersCountry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblExhibits">
+      <EntityTypeMapping TypeName="MuseumModel.tblExhibit">
+        <MappingFragment StoreEntitySet="tblExhibits">
+          <ScalarProperty Name="ExhibitId" ColumnName="ExhibitId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Dimensions" ColumnName="Dimensions" />
+          <ScalarProperty Name="HistoricPeriod" ColumnName="HistoricPeriod" />
+          <ScalarProperty Name="LocationIdFK" ColumnName="LocationIdFK" />
+          <ScalarProperty Name="OrderFormIdFK" ColumnName="OrderFormIdFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLocations">
+      <EntityTypeMapping TypeName="MuseumModel.tblLocation">
+        <MappingFragment StoreEntitySet="tblLocations">
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="Surface_m2_" ColumnName="Surface(m2)" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="LeasePrice" ColumnName="LeasePrice" />
+          <ScalarProperty Name="MuseumIdFK" ColumnName="MuseumIdFK" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMuseums">
+      <EntityTypeMapping TypeName="MuseumModel.tblMuseum">
+        <MappingFragment StoreEntitySet="tblMuseum">
+          <ScalarProperty Name="MuseumId" ColumnName="MuseumId" />
+          <ScalarProperty Name="MuseumName" ColumnName="MuseumName" />
+          <ScalarProperty Name="MuseumAddress" ColumnName="MuseumAddress" />
+          <ScalarProperty Name="Established" ColumnName="Established" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrderForms">
+      <EntityTypeMapping TypeName="MuseumModel.tblOrderForm">
+        <MappingFragment StoreEntitySet="tblOrderForms">
+          <ScalarProperty Name="OrderFormId" ColumnName="OrderFormId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BuyerAdress" ColumnName="BuyerAdress" />
+          <ScalarProperty Name="BuyerIdFk" ColumnName="BuyerIdFk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="MuseumModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MuseumViews">
+      <EntityTypeMapping TypeName="MuseumModel.MuseumView">
+        <MappingFragment StoreEntitySet="MuseumView">
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="Surface_m2_" ColumnName="Surface(m2)" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="LeasePrice" ColumnName="LeasePrice" />
+          <ScalarProperty Name="MuseumIdFK" ColumnName="MuseumIdFK" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ExhibitId" ColumnName="ExhibitId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Dimensions" ColumnName="Dimensions" />
+          <ScalarProperty Name="HistoricPeriod" ColumnName="HistoricPeriod" />
+          <ScalarProperty Name="LocationIdFK" ColumnName="LocationIdFK" />
+          <ScalarProperty Name="OrderFormIdFK" ColumnName="OrderFormIdFK" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="BuyersName" ColumnName="BuyersName" />
+          <ScalarProperty Name="BuyersSurname" ColumnName="BuyersSurname" />
+          <ScalarProperty Name="BuyersAddress" ColumnName="BuyersAddress" />
+          <ScalarProperty Name="BuyersCountry" ColumnName="BuyersCountry" />
+          <ScalarProperty Name="MuseumId" ColumnName="MuseumId" />
+          <ScalarProperty Name="MuseumName" ColumnName="MuseumName" />
+          <ScalarProperty Name="MuseumAddress" ColumnName="MuseumAddress" />
+          <ScalarProperty Name="Established" ColumnName="Established" />
+          <ScalarProperty Name="OrderFormId" ColumnName="OrderFormId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="BuyerAdress" ColumnName="BuyerAdress" />
+          <ScalarProperty Name="BuyerIdFk" ColumnName="BuyerIdFk" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

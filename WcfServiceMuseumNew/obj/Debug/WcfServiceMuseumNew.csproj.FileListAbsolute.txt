@@ -1,0 +1,5 @@
+D:\Diplomski\WcfServiceMuseumNew\WcfServiceMuseumNew\bin\WcfServiceMuseumNew.dll
+D:\Diplomski\WcfServiceMuseumNew\WcfServiceMuseumNew\bin\WcfServiceMuseumNew.pdb
+D:\Diplomski\WcfServiceMuseumNew\WcfServiceMuseumNew\obj\Debug\WcfServiceMuseumNew.dll
+D:\Diplomski\WcfServiceMuseumNew\WcfServiceMuseumNew\obj\Debug\WcfServiceMuseumNew.pdb
+D:\Diplomski\WcfServiceMuseumNew\WcfServiceMuseumNew\obj\Debug\WcfServiceMuseumNew.csprojResolveAssemblyReference.cache

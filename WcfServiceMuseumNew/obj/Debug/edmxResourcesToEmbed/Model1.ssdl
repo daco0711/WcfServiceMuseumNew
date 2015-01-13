@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MuseumModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MuseumModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="MuseumModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblBuyers" EntityType="MuseumModel.Store.tblBuyers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblExhibits" EntityType="MuseumModel.Store.tblExhibits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblLocations" EntityType="MuseumModel.Store.tblLocations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblMuseum" EntityType="MuseumModel.Store.tblMuseum" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblOrderForms" EntityType="MuseumModel.Store.tblOrderForms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUsers" EntityType="MuseumModel.Store.tblUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MuseumView" EntityType="MuseumModel.Store.MuseumView" store:Type="Views" store:Schema="dbo" store:Name="MuseumView">
+      <DefiningQuery>SELECT 
+      [MuseumView].[LocationId] AS [LocationId], 
+      [MuseumView].[LocationName] AS [LocationName], 
+      [MuseumView].[Surface(m2)] AS [Surface(m2)], 
+      [MuseumView].[State] AS [State], 
+      [MuseumView].[LeasePrice] AS [LeasePrice], 
+      [MuseumView].[MuseumIdFK] AS [MuseumIdFK], 
+      [MuseumView].[Country] AS [Country], 
+      [MuseumView].[ExhibitId] AS [ExhibitId], 
+      [MuseumView].[Type] AS [Type], 
+      [MuseumView].[Dimensions] AS [Dimensions], 
+      [MuseumView].[HistoricPeriod] AS [HistoricPeriod], 
+      [MuseumView].[LocationIdFK] AS [LocationIdFK], 
+      [MuseumView].[OrderFormIdFK] AS [OrderFormIdFK], 
+      [MuseumView].[BuyerId] AS [BuyerId], 
+      [MuseumView].[BuyersName] AS [BuyersName], 
+      [MuseumView].[BuyersSurname] AS [BuyersSurname], 
+      [MuseumView].[BuyersAddress] AS [BuyersAddress], 
+      [MuseumView].[BuyersCountry] AS [BuyersCountry], 
+      [MuseumView].[MuseumId] AS [MuseumId], 
+      [MuseumView].[MuseumName] AS [MuseumName], 
+      [MuseumView].[MuseumAddress] AS [MuseumAddress], 
+      [MuseumView].[Established] AS [Established], 
+      [MuseumView].[OrderFormId] AS [OrderFormId], 
+      [MuseumView].[Date] AS [Date], 
+      [MuseumView].[BuyerAdress] AS [BuyerAdress], 
+      [MuseumView].[BuyerIdFk] AS [BuyerIdFk], 
+      [MuseumView].[UserId] AS [UserId], 
+      [MuseumView].[Name] AS [Name], 
+      [MuseumView].[UserName] AS [UserName], 
+      [MuseumView].[Password] AS [Password], 
+      [MuseumView].[IsAdministrator] AS [IsAdministrator]
+      FROM [dbo].[MuseumView] AS [MuseumView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tblExhibits_tblLocations" Association="MuseumModel.Store.FK_tblExhibits_tblLocations">
+      <End Role="tblLocations" EntitySet="tblLocations" />
+      <End Role="tblExhibits" EntitySet="tblExhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblExhibits_tblOrderForms" Association="MuseumModel.Store.FK_tblExhibits_tblOrderForms">
+      <End Role="tblOrderForms" EntitySet="tblOrderForms" />
+      <End Role="tblExhibits" EntitySet="tblExhibits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblLocations_tblMuseum" Association="MuseumModel.Store.FK_tblLocations_tblMuseum">
+      <End Role="tblMuseum" EntitySet="tblMuseum" />
+      <End Role="tblLocations" EntitySet="tblLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderForms_tblBuyers" Association="MuseumModel.Store.FK_tblOrderForms_tblBuyers">
+      <End Role="tblBuyers" EntitySet="tblBuyers" />
+      <End Role="tblOrderForms" EntitySet="tblOrderForms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblBuyers">
+    <Key>
+      <PropertyRef Name="BuyerId" />
+    </Key>
+    <Property Name="BuyerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BuyersName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BuyersSurname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BuyersAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="BuyersCountry" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblExhibits">
+    <Key>
+      <PropertyRef Name="ExhibitId" />
+    </Key>
+    <Property Name="ExhibitId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Dimensions" Type="nvarchar" MaxLength="150" />
+    <Property Name="HistoricPeriod" Type="nchar" MaxLength="10" />
+    <Property Name="LocationIdFK" Type="int" Nullable="false" />
+    <Property Name="OrderFormIdFK" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblLocations">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Surface(m2)" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="150" />
+    <Property Name="LeasePrice" Type="nvarchar" MaxLength="150" />
+    <Property Name="MuseumIdFK" Type="int" />
+    <Property Name="Country" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblMuseum">
+    <Key>
+      <PropertyRef Name="MuseumId" />
+    </Key>
+    <Property Name="MuseumId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MuseumName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="MuseumAddress" Type="nvarchar" MaxLength="150" />
+    <Property Name="Established" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblOrderForms">
+    <Key>
+      <PropertyRef Name="OrderFormId" />
+    </Key>
+    <Property Name="OrderFormId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="BuyerAdress" Type="nvarchar" MaxLength="150" />
+    <Property Name="BuyerIdFk" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="IsAdministrator" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Museum.dbo.MuseumView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="MuseumView">
+    <Key>
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="ExhibitId" />
+      <PropertyRef Name="Type" />
+      <PropertyRef Name="LocationIdFK" />
+      <PropertyRef Name="OrderFormIdFK" />
+      <PropertyRef Name="BuyerId" />
+      <PropertyRef Name="BuyersName" />
+      <PropertyRef Name="BuyersSurname" />
+      <PropertyRef Name="BuyersAddress" />
+      <PropertyRef Name="MuseumId" />
+      <PropertyRef Name="MuseumName" />
+      <PropertyRef Name="OrderFormId" />
+      <PropertyRef Name="BuyerIdFk" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="IsAdministrator" />
+    </Key>
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Surface(m2)" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="150" />
+    <Property Name="LeasePrice" Type="nvarchar" MaxLength="150" />
+    <Property Name="MuseumIdFK" Type="int" />
+    <Property Name="Country" Type="nvarchar" MaxLength="150" />
+    <Property Name="ExhibitId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Dimensions" Type="nvarchar" MaxLength="150" />
+    <Property Name="HistoricPeriod" Type="nchar" MaxLength="10" />
+    <Property Name="LocationIdFK" Type="int" Nullable="false" />
+    <Property Name="OrderFormIdFK" Type="int" Nullable="false" />
+    <Property Name="BuyerId" Type="int" Nullable="false" />
+    <Property Name="BuyersName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BuyersSurname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BuyersAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="BuyersCountry" Type="nvarchar" MaxLength="150" />
+    <Property Name="MuseumId" Type="int" Nullable="false" />
+    <Property Name="MuseumName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="MuseumAddress" Type="nvarchar" MaxLength="150" />
+    <Property Name="Established" Type="datetime" />
+    <Property Name="OrderFormId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="BuyerAdress" Type="nvarchar" MaxLength="150" />
+    <Property Name="BuyerIdFk" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="IsAdministrator" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblExhibits_tblLocations">
+    <End Role="tblLocations" Type="MuseumModel.Store.tblLocations" Multiplicity="1" />
+    <End Role="tblExhibits" Type="MuseumModel.Store.tblExhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLocations">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="tblExhibits">
+        <PropertyRef Name="LocationIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblExhibits_tblOrderForms">
+    <End Role="tblOrderForms" Type="MuseumModel.Store.tblOrderForms" Multiplicity="1" />
+    <End Role="tblExhibits" Type="MuseumModel.Store.tblExhibits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrderForms">
+        <PropertyRef Name="OrderFormId" />
+      </Principal>
+      <Dependent Role="tblExhibits">
+        <PropertyRef Name="OrderFormIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblLocations_tblMuseum">
+    <End Role="tblMuseum" Type="MuseumModel.Store.tblMuseum" Multiplicity="0..1" />
+    <End Role="tblLocations" Type="MuseumModel.Store.tblLocations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMuseum">
+        <PropertyRef Name="MuseumId" />
+      </Principal>
+      <Dependent Role="tblLocations">
+        <PropertyRef Name="MuseumIdFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderForms_tblBuyers">
+    <End Role="tblBuyers" Type="MuseumModel.Store.tblBuyers" Multiplicity="1" />
+    <End Role="tblOrderForms" Type="MuseumModel.Store.tblOrderForms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBuyers">
+        <PropertyRef Name="BuyerId" />
+      </Principal>
+      <Dependent Role="tblOrderForms">
+        <PropertyRef Name="BuyerIdFk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

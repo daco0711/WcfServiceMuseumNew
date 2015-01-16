@@ -9,11 +9,13 @@ using System.Text;
 namespace WcfServiceMuseumNew
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract(Namespace = "WcfServiceMuseumNew")]
     public interface IService1
     {
         [OperationContract(Action = "MuseumService/GetMuseum")]
         List<Museum> getMuseum();
+
+
         
         [OperationContract(Action = "MuseumService/UpdateMuseum")]
         void updateMuseum(Int32 museumId, String museumName, String museumAddress, DateTime established);
@@ -29,6 +31,9 @@ namespace WcfServiceMuseumNew
 
         [OperationContract(Action = "MuseumService/FindLocations")]
         List<Locations> findLocations(String locationName);
+
+        [OperationContract(Action = "MuseumService/GetLocationsByID")]
+        Locations getLocationsByID(Int32 locationID);
 
         [OperationContract(Action = "MuseumService/AddLocations")]
         void addLocations(String locationName, String surface, String state, String leasePrice, Int32 museumIdFK, String country);
@@ -88,12 +93,11 @@ namespace WcfServiceMuseumNew
         [OperationContract(Action = "MuseumService/FindUsers")]
         List<Users> findUsers(String name,String userName);
 
-        
+        [OperationContract(Action = "MuseumService/AddUsers")]
+        void addUsers(String name, String userName, String password, Boolean isAdministrator);
 
-
-
-        
-
+        [OperationContract(Action = "MuseumService/UpdateUsers")]
+        void updateUsers(Int32 userID, String name, String userName, String password, Boolean isAdministrator);
 
         [OperationContract]
         string GetData(int value);

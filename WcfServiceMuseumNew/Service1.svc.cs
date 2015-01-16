@@ -530,6 +530,57 @@ namespace WcfServiceMuseumNew
             return locations;
         }
 
+        public Locations getLocationsByID(Int32 locationID)
+        {
+            SqlConnection conection = new SqlConnection();
+            DataSet data = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand query = new SqlCommand("select * from tblLocations where LocationId = " + locationID);
+            conection.ConnectionString = ("Data Source=DACO-PC;Initial Catalog=Museum;User ID=sa;Password=daco;MultipleActiveResultSets=True");
+            query.Connection = conection;
+            conection.Open();
+            SqlDataReader reader = query.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Locations location = new Locations();
+
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.LocationId = Convert.ToInt32(reader["LocationId"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.LocationName = Convert.ToString(reader["LocationName"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.Surface = Convert.ToString(reader["Surface"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.State = Convert.ToString(reader["State"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.LeasePrice = Convert.ToString(reader["LeasePrice"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.MuseumIdFK = Convert.ToInt32(reader["MuseumIdFK"]);
+                }
+                if (!Convert.IsDBNull(reader["LocationId"]))
+                {
+                    location.Country = Convert.ToString(reader["Country"]);
+                }
+
+                return location;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public List<OrderForms> findOrderForms(Int32 buyerIdFk, String buyerAdress)
         {

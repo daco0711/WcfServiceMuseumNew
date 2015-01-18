@@ -849,7 +849,7 @@ namespace WcfServiceMuseumNew
                 {
                     exhibit.LocationIdFK = Convert.ToInt32(reader["LocationIdFK"]);
                 }
-                if (!Convert.IsDBNull(reader["ExhibitId"]))
+                if (!Convert.IsDBNull(reader["OrderFormIdFK"]))
                 {
                     exhibit.OrderFormIdFK = Convert.ToInt32(reader["OrderFormIdFK"]);
                 }
@@ -937,7 +937,7 @@ namespace WcfServiceMuseumNew
                 {
                     exhibit.LocationIdFK = Convert.ToInt32(reader["LocationIdFK"]);
                 }
-                if (!Convert.IsDBNull(reader["ExhibitId"]))
+                if (!Convert.IsDBNull(reader["OrderFormIdFK"]))
                 {
                     exhibit.OrderFormIdFK = Convert.ToInt32(reader["OrderFormIdFK"]);
                 }

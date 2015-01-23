@@ -138,7 +138,7 @@ namespace WcfServiceMuseumNew
                 {
                     orderForm.buyerAddress = Convert.ToString(reader["BuyerAdress"]);
                 }
-                if (!Convert.IsDBNull(reader["OrderFormId"]))
+                if (!Convert.IsDBNull(reader["BuyerIdFk"]))
                 {
                     orderForm.buyerIdFK = Convert.ToInt32(reader["BuyerIdFk"]);
                 }
@@ -300,10 +300,6 @@ namespace WcfServiceMuseumNew
 
         }
 
-
-
-
-
         public List<Locations> getLocations()
         {
             SqlConnection conection = new SqlConnection();
@@ -323,27 +319,27 @@ namespace WcfServiceMuseumNew
                 {
                     location.LocationId = Convert.ToInt32(reader["LocationId"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["LocationName"]))
                 {
                     location.LocationName = Convert.ToString(reader["LocationName"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["Surface"]))
                 {
                     location.Surface = Convert.ToString(reader["Surface"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["State"]))
                 {
                     location.State = Convert.ToString(reader["State"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["LeasePrice"]))
                 {
                     location.LeasePrice = Convert.ToString(reader["LeasePrice"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["MuseumIdFK"]))
                 {
                     location.MuseumIdFK = Convert.ToInt32(reader["MuseumIdFK"]);
                 }
-                if (!Convert.IsDBNull(reader["LocationId"]))
+                if (!Convert.IsDBNull(reader["Country"]))
                 {
                     location.Country = Convert.ToString(reader["Country"]);
                 }
@@ -845,7 +841,7 @@ namespace WcfServiceMuseumNew
                 {
                     exhibit.HistoricPeriod = Convert.ToString(reader["HistoricPeriod"]);
                 }
-                if (!Convert.IsDBNull(reader["ExhibitId"]))
+                if (!Convert.IsDBNull(reader["LocationIdFK"]))
                 {
                     exhibit.LocationIdFK = Convert.ToInt32(reader["LocationIdFK"]);
                 }
